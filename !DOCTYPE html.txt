@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Location Capture</title>
+    <script>
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(sendToGoogleForm, showError);
+            } else {
+                alert("Geolocation is not supported by this browser.");
+            }
+        }
+
+        function sendToGoogleForm(position) {
+            let lat = position.coords.latitude;
+            let lon = position.coords.longitude;
+            
+            let formURL = "https://docs.google.com/forms/d/e/FORM_ID/viewform?usp=pp_url&entry.123456789=" + lat + "," + lon;
+            
+            window.location.href = formURL;
+        }
+
+        function showError(error) {
+            alert("Error getting location: " + error.message);
+        }
+    </script>
+</head>
+<body onload="getLocation()">
+    <h2>Getting Your Location...</h2>
+</body>
+</html>
